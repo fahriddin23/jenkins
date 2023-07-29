@@ -14,9 +14,9 @@ pipeline {
             }
         }
         
-        stage('read passwd') {
+        stage('verify terraform') {
             steps {
-                sh 'cat /etc/passwd'
+                sh "terraform -v"
             }
         }
         
