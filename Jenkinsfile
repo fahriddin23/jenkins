@@ -10,7 +10,7 @@ pipeline {
         
         stage('print bye') {
             steps {
-                echo "Bye"
+                echo "Byee"
             }
         }
         
