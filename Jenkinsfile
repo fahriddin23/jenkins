@@ -6,8 +6,8 @@ pipeline {
             steps{
                 dir("terraform") {
                 sh "pwd"
-            }
-        }
+            
+        
 
         stage('Terraform init') {
             steps {
@@ -39,5 +39,7 @@ pipeline {
             }
         }
         
+    }
+}
     }
 }
