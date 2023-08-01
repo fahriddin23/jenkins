@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+        stage('Change dir')
+            steps{
+                dir("terraform") {
+                sh "pwd"
+            }
+        }
+
         stage('Terraform init') {
             steps {
                 sh 'terraform init'
