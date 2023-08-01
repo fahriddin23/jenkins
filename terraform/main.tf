@@ -13,7 +13,7 @@ resource "aws_instance" "webserver" {
 }
 
 resource "aws_security_group" "ssh_port" {
-  name        = "webserver-securitygroup"
+  name        = "newserver-securitygroup"
   description = "Allow ssh connection"
   vpc_id      = "vpc-043b5aa5a78cd8fec"
 
