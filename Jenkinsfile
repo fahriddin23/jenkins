@@ -4,15 +4,17 @@ pipeline {
     stages {
         stage('Terraform init') {
             steps {
-                sh 'cd terraform/'
+                sh 'cd terraform'
                 sh 'terraform init'
             }
         }
 
         stage('pwd') {
             steps {
+                dir('testfolder') {
                 sh "pwd"
             }
+        }
         }
 
         stage('whoami') {
