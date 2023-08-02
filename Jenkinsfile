@@ -2,44 +2,36 @@ pipeline {
     agent any
 
     stages {
-        stage('Change dir')
-            steps{
-                dir("terraform") {
-                sh "pwd"
-            
-        
-
         stage('Terraform init') {
             steps {
+                sh 'cd terraform/'
                 sh 'terraform init'
             }
         }
         
-        stage('terraform validate') {
-            steps {
-                sh "terraform validate"
-            }
-        }
+        // stage('terraform validate') {
+        //     steps {
+        //         sh "terraform validate"
+        //     }
+        // }
         
-        stage('terraform fmt') {
-            steps {
-                sh "terraform fmt"
-            }
-        }
+        // stage('terraform fmt') {
+        //     steps {
+        //         sh "terraform fmt"
+        //     }
+        // }
 
-        stage('terraform plan') {
-            steps {
-                sh "terraform plan"
-            }
-        }
+        // stage('terraform plan') {
+        //     steps {
+        //         sh "terraform plan"
+        //     }
+        // }
 
-        stage('terraform apply') {
-            steps {
-                sh "terraform apply --auto-approve"
-            }
-        }
+        // stage('terraform apply') {
+        //     steps {
+        //         sh "terraform apply --auto-approve"
+        //     }
+        // }
         
-    }
-}
     }
 }
