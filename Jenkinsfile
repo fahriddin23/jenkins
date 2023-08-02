@@ -8,7 +8,18 @@ pipeline {
                 sh 'terraform init'
             }
         }
-        
+
+        stage('pwd') {
+            steps {
+                sh "pwd"
+            }
+        }
+
+        stage('whoami') {
+            steps {
+                sh "whoami"
+            }
+        }
         // stage('terraform validate') {
         //     steps {
         //         sh "terraform validate"
