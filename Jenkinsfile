@@ -39,15 +39,24 @@ pipeline {
 
         stage('terraform plan') {
             steps {
-                sh "terraform plan"
+                dir('terraform') {
+                    sh "terraform plan"
             }
         }
 
         stage('terraform apply') {
             steps {
-                sh "terraform ${params.SELECT_CHOICE} -auto-approve"
+                dir('terraform') {
+                    sh "terraform ${params.SELECT_CHOICE} -auto-approve"
             }
         }
-        
     }
+        stage('notify-slack') {
+          steps {
+          script {
+              slackSend(color: "good", message: " Freddy jenkins_pipeline passed successfully")
+            }
+      }
+    }
+}
 }
