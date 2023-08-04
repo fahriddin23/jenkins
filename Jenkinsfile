@@ -14,6 +14,9 @@ pipeline {
     }
     stages {
         stage('Terraform init') {
+            when {
+                branch 'main'
+            }
             steps {
                 dir('terraform') {
                 sh 'terraform init'
