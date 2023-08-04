@@ -1,3 +1,5 @@
+def userId = slackUserIdFromEmail('fahriddin24@gmail.com')
+
 pipeline {
     agent any
 
@@ -50,14 +52,14 @@ pipeline {
                     sh "terraform ${params.SELECT_CHOICE} -auto-approve"
             }
         }
+        }
+        }    
+  }
+ 
+ post('Post Action') {
+    success {
+        echo '### Send Slack Notification ###'
+        slackSend(color: "good", message: "<@$userId> jenkins_pipeline passed successfully")
     }
-        stage('notify-slack') {
-          steps {
-          script {
-              slackSend(color: "good", message: " Freddy jenkins_pipeline passed successfully")
-            }
-      }
-    }
-}
-}
+ }
 }
