@@ -1,4 +1,6 @@
 def userId = slackUserIdFromEmail('fahriddin24@gmail.com')
+def userIdAdmin = slackUserIdFromEmail('tuba_7655@icloud.com')
+def userIdAdmin2 = slackUserIdFromEmail('Burkanov.es@gmail.com')
 
 pipeline {
     agent any
@@ -45,6 +47,7 @@ pipeline {
                     sh "terraform plan"
             }
         }
+        }
 
         stage('terraform apply') {
             steps {
@@ -53,13 +56,17 @@ pipeline {
             }
         }
         }
-        }    
+           
   }
  
  post('Post Action') {
     success {
         echo '### Send Slack Notification ###'
         slackSend(color: "good", message: "<@$userId> jenkins_pipeline passed successfully")
+    }
+    failure {
+        echo '### Send Slack Notification ###'
+        slackSend(color: "good", message: "<@$userIdAdmin> and <@$userIdAdmin2> jenkins_pipeline status failed please troubleshoot - Thanks")
     }
  }
 }
