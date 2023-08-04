@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Terraform init') {
             when {
-                branch 'main'
+                branch 'master'
             }
             steps {
                 dir('terraform') {
