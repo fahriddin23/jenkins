@@ -66,7 +66,7 @@ pipeline {
     }
     failure {
         echo '### Send Slack Notification ###'
-        slackSend(color: "good", message: "<@$userIdAdmin> and <@$userIdAdmin2> jenkins_pipeline status failed please troubleshoot - Thanks")
+        slackSend(color: "danger", message: "<@$userIdAdmin> and <@$userIdAdmin2> jenkins_pipeline status failed please troubleshoot - Thanks")
     }
  }
 }
