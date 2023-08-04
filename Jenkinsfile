@@ -82,5 +82,9 @@ pipeline {
         echo '### Send Slack Notification ###'
         slackSend(color: "danger", message: "<@$userIdAdmin> and <@$userIdAdmin2> jenkins_pipeline status failed please troubleshoot - Thanks :doge: ")
     }
+    always {
+        echo '### Clean workspace ###'
+        cleanWs()
  }
+}
 }
