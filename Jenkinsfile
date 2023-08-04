@@ -14,9 +14,6 @@ pipeline {
     }
     stages {
         stage('Terraform init') {
-            when {
-                expression { params.SELECT_CHOICE == "apply"}
-            }
             steps {
                 dir('terraform') {
                 sh 'terraform init'
@@ -53,6 +50,20 @@ pipeline {
         }
 
         stage('terraform apply') {
+            when {
+                expression { params.SELECT_CHOICE == "apply"}
+            }
+            steps {
+                dir('terraform') {
+                    sh "terraform ${params.SELECT_CHOICE} -auto-approve"
+            }
+        }
+        }
+
+        stage('terraform destroy') {
+            when {
+                expression { params.SELECT_CHOICE == "destroy"}
+            }
             steps {
                 dir('terraform') {
                     sh "terraform ${params.SELECT_CHOICE} -auto-approve"
@@ -65,11 +76,11 @@ pipeline {
  post('Post Action') {
     success {
         echo '### Send Slack Notification ###'
-        slackSend(color: "good", message: "<@$userId> jenkins_pipeline passed successfully")
+        slackSend(color: "good", message: "<@$userId> jenkins_pipeline passed successfully :thumbs up: ")
     }
     failure {
         echo '### Send Slack Notification ###'
-        slackSend(color: "danger", message: "<@$userIdAdmin> and <@$userIdAdmin2> jenkins_pipeline status failed please troubleshoot - Thanks")
+        slackSend(color: "danger", message: "<@$userIdAdmin> and <@$userIdAdmin2> jenkins_pipeline status failed please troubleshoot - Thanks :doge: ")
     }
  }
 }
