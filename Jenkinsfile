@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Terraform init') {
             when {
-                branch 'master'
+                expression { params.SELECT_CHOICE == "apply"}
             }
             steps {
                 dir('terraform') {
