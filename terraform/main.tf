@@ -1,7 +1,7 @@
 resource "aws_instance" "webserver" {
   ami                    = data.aws_ami.amazon_linux2.id
   instance_type          = var.instance_type
-  key_name               = "lenovo"
+  key_name               = "jenkins@jenkins"
   user_data              = file("${path.module}/user_data.sh")
   vpc_security_group_ids = [aws_security_group.ssh_port.id]
   tags = merge(

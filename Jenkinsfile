@@ -89,7 +89,16 @@ pipeline {
                 echo "The Terraform output in stage tf-apply is: ${IP_ADDR}"
         }
       }
-    }     
+    }
+        stage('SSH Remote-host') {
+            when {
+                expression { params.SELECT_CHOICE == "apply" }
+            }
+            steps {
+                sleep(time: 2, unit: 'MINUTES')
+                sh 'ssh -o StrictHostKeyChecking=accept-new -tt ubuntu@${IP_ADDR} "sudo apt install nginx -y"'
+      }
+    }
   }
  
  post('Post Action') {
