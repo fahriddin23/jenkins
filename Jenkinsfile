@@ -80,8 +80,16 @@ pipeline {
             steps {
                 slackSend(color: "good", message: " <@$userId> jenkins_pipeline status infrabuild successful ")
             }
-        
-        }     
+        }
+
+        stage('read-tf-output') {
+            steps {
+                script {
+                // Reading the Terraform output from the environment variable in stage "tf-apply"
+                echo "The Terraform output in stage tf-apply is: ${IP_ADDR}"
+        }
+      }
+    }     
   }
  
  post('Post Action') {
