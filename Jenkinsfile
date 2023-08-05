@@ -67,13 +67,14 @@ pipeline {
                     sh "terraform ${params.SELECT_CHOICE} -auto-approve"
             }
         }
+        }
 
-        stage('notify infrabuild')
+        stage('notify infrabuild') {
             steps {
                 slackSend(color: "good", message: "<@userId> jenkins_pipeline status infrabuild successful ")
             }
-        }
-           
+        
+        }     
   }
  
  post('Post Action') {
