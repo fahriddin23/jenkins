@@ -76,17 +76,11 @@ pipeline {
            
   }
  
-//  post('Post Action') {
-//     success {
-//         echo '### Send Slack Notification ###'
-//         slackSend(color: "good", message: "<@userId> jenkins_pipeline status nginx installed successfully ")
-//     }
-//     failure {
-//         echo '### Send Slack Notification ###'
-//         slackSend(color: "danger", message: "<@userId> jenkins_pipeline status failed please troubleshoot - Thanks ")
-//     }
-//     always {
-//         echo '### Clean workspace ###'
-//         cleanWs()
-//  }
+ post('Post Action') {
+
+    always {
+        echo '### Clean workspace ###'
+        cleanWs()
+ }
+}
 }
