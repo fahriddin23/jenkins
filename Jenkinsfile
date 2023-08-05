@@ -54,9 +54,9 @@ pipeline {
             steps {
                 dir('terraform') {
                     sh "terraform ${params.SELECT_CHOICE} -auto-approve"
-                    sh "terraform output"
+                    sh "terraform output instance_private_ip"
                     // script {
-                    //     def tf_output = sh(returnStdout )
+                    //     def tf_output = sh(returnStdout true, script: """terraform output instance_private_ip | tr -d '"' )
                     // }
             }
         }
@@ -75,7 +75,7 @@ pipeline {
 
         stage('notify infrabuild') {
             steps {
-                slackSend(color: "good", message: " <@userId> jenkins_pipeline status infrabuild successful ")
+                slackSend(color: "good", message: " <@$userId> jenkins_pipeline status infrabuild successful ")
             }
         
         }     
