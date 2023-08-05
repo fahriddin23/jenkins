@@ -52,12 +52,12 @@ pipeline {
                 expression { params.SELECT_CHOICE == "apply"}
             }
             steps {
-                dir('terraform') {
-                    sh "terraform ${params.SELECT_CHOICE} -auto-approve"
-                    sh """terraform output instance_private_ip | tr -d '"' """
-                    // script {
-                    //     def tf_output = sh(returnStdout true, script: """terraform output instance_private_ip | tr -d '"' )
-                    // }
+                script {
+                    dir('terraform') {
+                        sh "terraform ${params.SELECT_CHOICE} -auto-approve"
+                        sh """terraform output instance_private_ip | tr -d '"' """
+                    }
+
             }
         }
         }
