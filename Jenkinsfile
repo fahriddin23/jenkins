@@ -1,6 +1,4 @@
 def userId = slackUserIdFromEmail('fahriddin24@gmail.com')
-def userIdAdmin = slackUserIdFromEmail('tuba_7655@icloud.com')
-def userIdAdmin2 = slackUserIdFromEmail('Burkanov.es@gmail.com')
 
 pipeline {
     agent any
@@ -69,22 +67,26 @@ pipeline {
                     sh "terraform ${params.SELECT_CHOICE} -auto-approve"
             }
         }
+
+        stage('notify infrabuild')
+            steps {
+                slackSend(color: "good", message: "<@userId> jenkins_pipeline status infrabuild successful ")
+            }
         }
            
   }
  
- post('Post Action') {
-    success {
-        echo '### Send Slack Notification ###'
-        slackSend(color: "good", message: "<@$userId> jenkins_pipeline status nginx installed successfully ")
-    }
-    failure {
-        echo '### Send Slack Notification ###'
-        slackSend(color: "danger", message: "<@$userIdAdmin> and <@$userIdAdmin2> jenkins_pipeline status failed please troubleshoot - Thanks :doge: ")
-    }
-    always {
-        echo '### Clean workspace ###'
-        cleanWs()
- }
-}
+//  post('Post Action') {
+//     success {
+//         echo '### Send Slack Notification ###'
+//         slackSend(color: "good", message: "<@userId> jenkins_pipeline status nginx installed successfully ")
+//     }
+//     failure {
+//         echo '### Send Slack Notification ###'
+//         slackSend(color: "danger", message: "<@userId> jenkins_pipeline status failed please troubleshoot - Thanks ")
+//     }
+//     always {
+//         echo '### Clean workspace ###'
+//         cleanWs()
+//  }
 }
