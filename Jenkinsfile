@@ -2,7 +2,9 @@ def userId = slackUserIdFromEmail('fahriddin24@gmail.com')
 
 pipeline {
     agent any
-
+    options {
+        timeout(time: 4, unit: 'MINUTES')
+    }
     parameters {
         choice(
             choices: ['apply' , 'destroy'],
