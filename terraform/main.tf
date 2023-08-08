@@ -1,3 +1,7 @@
+data "aws_security_group" "selected" {
+  id = var.security_group_id
+}
+
 resource "aws_instance" "webserver" {
   ami                    = data.aws_ami.amazon_linux2.id
   instance_type          = var.instance_type
@@ -12,9 +16,7 @@ resource "aws_instance" "webserver" {
   )
 }
 
-data "aws_security_group" "selected" {
-  id = var.security_group_id
-}
+
 
 
 # resource "aws_security_group" "ssh_port" {
