@@ -4,6 +4,7 @@ pipeline {
     agent any
     options {
         timeout(time: 4, unit: 'MINUTES')
+        ansiColor('xterm')
     }
     parameters {
         choice(
@@ -97,7 +98,7 @@ pipeline {
                 expression { params.SELECT_CHOICE == "apply" }
             }
             steps {
-                sleep(time: 2, unit: 'MINUTES')
+                sleep(time: 1, unit: 'MINUTES')
                 sh 'ssh -o StrictHostKeyChecking=accept-new -tt ec2-user@${IP_ADDR} "sudo yum install nginx -y"'
       }
     }
