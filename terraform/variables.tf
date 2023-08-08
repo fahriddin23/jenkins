@@ -32,3 +32,6 @@ variable "protocol" {
   type        = string
 }
 
+variable "security_group_id" {
+  default = "sg-09976c62f8d1c5a3a"
+}
