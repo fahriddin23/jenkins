@@ -10,7 +10,7 @@ variable "env" {
 
 variable "key_name" {
   description = "This is my key name"
-  default     = "lenovo"
+  default     = "jenkins@jenkins"
   type        = string
 }
 

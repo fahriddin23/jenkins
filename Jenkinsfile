@@ -76,11 +76,11 @@ pipeline {
             }
         }
 
-        stage('notify infrabuild') {
-            steps {
-                slackSend(color: "good", message: " <@$userId> jenkins_pipeline status infrabuild successful ")
-            }
-        }
+        // stage('notify infrabuild') {
+        //     steps {
+        //         slackSend(color: "good", message: " <@$userId> jenkins_pipeline status infrabuild successful ")
+        //     }
+        // }
 
         stage('read-tf-output') {
             steps {
