@@ -99,7 +99,7 @@ pipeline {
             }
             steps {
                 sleep(time: 1, unit: 'MINUTES')
-                sh 'ssh -o StrictHostKeyChecking=accept-new -tt ec2-user@${IP_ADDR} "sudo yum install nginx -y"'
+                sh 'ssh -o StrictHostKeyChecking=accept-new -tt ec2-user@${IP_ADDR} "sudo yum install nginx1 -y"'
       }
     }
   }
